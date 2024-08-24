@@ -176,7 +176,7 @@ export const deleteHabit = async function(req,res)
         let habit = await Habits.findById(id);
         await habit.deleteOne();
 
-        await Status.deleteMany({habit:id})
+        await Status.      ({habit:id})
 
         res.redirect('back')
         
@@ -234,7 +234,7 @@ export const toggleStatusw=async function(req,res)
 
         status.save();
 
-       
+       console.log("git chnages")
         return res.redirect('back');
 
     } catch (error) {

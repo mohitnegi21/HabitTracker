@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/css/weekview.css">
+
+<div id="header-div">
+    <h1>Habits develop into character</h1>
+    <button type="button" id="daily-view"><a href="/">Show Daily View</a></button>
+</div>
+   
+<!-- http://localhost:8000/habits/toggleStatusw/?id=66c2c055052b020c99e2c749&date%20=%20August%2013 -->
+<div id="habits-div">
+    <%for(let habit of habits){%>
+    <div id="user-habits">
+        <h4><%=habit.name%></h4>
+        <%habit.status.reverse().forEach(function(habitstatus){%>
+            <div>
+                <p><%=habitstatus.date%></p>
+                
+
+                <form action="/habits/toggleStatusw/?id=<%=habit._id%>&date=<%=habitstatus.date%>" method="post" id="select-form">
+                    <select name="habitstatus" class="habit-status-dropdown" id=<%=habit._id%>>
+
+
+                        <option value="Not Started" <% if (habitstatus.datestatus === "Not Started") { %>selected<% } %>>Not Started</option>
+                        <option value="Done" <% if (habitstatus.datestatus === "Done") { %>selected<% } %>>Done</option>
+                        <option value="Not Done" <% if (habitstatus.datestatus === "Not Done") { %>selected<% } %>>Not Done</option>
+                        
+                    </select>
+                    <button type="submit" id="change-status">Change Status</button>
+                    
+                </form>
+
+
+                <!-- <%var bgcolor='#B1B6B6'%> -->
+               <!-- <% if(habitstatus.datestatus!=='Not Started'){%> -->
+                    <!-- <%bgcolor=habitstatus.datestatus=='Done'?'green':'red';}%> -->
+
+                <!-- <button ><a href="/habits/weeklyView/toggleStatus/?date=<%=habitstatus.date%>&id=<%=habit._id%>"><%=habitstatus.datestatus%></a></button> -->
+            </div>
+            <%})%>
+    </div>
+    <%}%>
+    </div>

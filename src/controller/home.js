@@ -176,7 +176,7 @@ export const deleteHabit = async function(req,res)
         let habit = await Habits.findById(id);
         await habit.deleteOne();
 
-        await Status.      ({habit:id})
+        await Status.deleteMany({habit:id})
 
         res.redirect('back')
         
@@ -213,10 +213,7 @@ export const weekView= async function(req,res)
 export const toggleStatusw=async function(req,res)
 {
     try {
-        // console.log(req.query.id);
-        // console.log(req.body);
-        // console.log(req.body.habitstatus);
-        // console.log(req.query.date);
+        
         let id =  new mongoose.Types.ObjectId(req.query.id)
         let status = await Status.findOne({habit:id,date:req.query.date})
         status.datestatus = req.body.habitstatus;
@@ -234,7 +231,7 @@ export const toggleStatusw=async function(req,res)
 
         status.save();
 
-       console.log("git chnages")
+       console.log("git")
         return res.redirect('back');
 
     } catch (error) {
